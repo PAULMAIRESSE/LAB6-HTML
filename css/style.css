@@ -1,0 +1,31 @@
+#active-rectangle {
+    position: absolute;
+    background-color: #007bff;
+    height: 3px;
+    width: 0px;
+    transition: width 0.3s ease, transform 0.5s;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.address-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.output-title {
+    text-decoration: underline;
+}
+
+.separator {
+    margin-top: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+}
+
+.container {
+    margin: 0 auto;
+    width: 70% !important;
+}
