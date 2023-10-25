@@ -29,3 +29,7 @@
     margin: 0 auto;
     width: 70% !important;
 }
+
+.form-group {
+    margin-bottom: 1rem;
+}

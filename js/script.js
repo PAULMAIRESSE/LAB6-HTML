@@ -43,6 +43,8 @@ function moveRectangle(link) {
 // Initially position the rectangle
 moveRectangle(actual_page);
 
+// Part 1
+// Form 
 const outputs = document.getElementById("outputs");
 
 function userForm() {
@@ -57,8 +59,7 @@ function userForm() {
     // Get form data
     const firstName = document.getElementById("first-name").value;
     const lastName = document.getElementById("last-name").value;
-    const email = document.getElementById("email").value;
-    email = email.toLowerCase();
+    const email = document.getElementById("email").value.toLowerCase();
     const address = document.getElementById("address").value;
     const city = document.getElementById("city").value;
     const province = document.getElementById("province").value;
@@ -89,4 +90,66 @@ function userForm() {
     outputs.prepend(output);
 }
 
-document.getElementById("send-button").addEventListener("click", (e) => { e.preventDefault(); userForm(); });
+// Part 2
+// Excel function
+const result = document.getElementById("result");
+const numbersElt = document.getElementById("numbers");
+
+function myExcelFuns() {
+    // Get the user's input
+    let input = numbersElt.value;
+    //check if it's empty or null
+    if (!input || input.trim() === "") {
+        alert("Please enter numbers separated by spaces.");
+        return; // Exit the function to prevent further processing
+    }
+
+    // Split the input into an array of numbers
+    let numbers = input.split(" ");
+    numbers = numbers.map(Number);
+
+    //check if it's a number
+    numbers.forEach((number) => {
+        if (isNaN(number)) {
+            alert("Please enter numbers separated by spaces.");
+            return; // Exit the function to prevent further processing
+        }
+    });
+
+    //get the user's checked
+    let selectedFunctionRadio = document.querySelector('input[name=function]:checked').value;
+
+    // Perform the selected operation
+    switch (selectedFunctionRadio) {
+        case 'autosum':
+            result.value = autoSum(numbers);
+            break;
+        case 'average':
+            result.value = average(numbers);
+            break;
+        case 'max':
+            result.value = max(numbers);
+            break;
+        case 'min':
+            result.value = min(numbers);
+            break;
+        default:
+            result.value = "Please choose an operation.";
+    }
+}
+
+function autoSum(array) {
+    return array.reduce((a, b) => a + b, 0);
+}
+
+function average(array) {
+    return autoSum(array) / array.length;
+}
+
+function max(array) {
+    return array.reduce((a, b) => a > b ? a : b);
+}
+
+function min(array) {
+    return array.reduce((a, b) => a < b ? a : b);
+}
